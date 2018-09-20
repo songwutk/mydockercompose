@@ -34,3 +34,13 @@ services :
         MYSQL_ROOT_PASSWORD: rootdocker
     ports:
       - 3306:3306
+      
+  pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+        PMA_HOST : mysql
+    ports:
+      - "8000:80"
+
