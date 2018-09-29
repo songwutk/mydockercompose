@@ -16,15 +16,13 @@ services :
     image: nginx:stable-alpine
     restart: always
     volumes:
-      - ./nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf:ro
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/conf:/etc/nginx/conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
       - ./logs/nginx:/var/log/nginx
     volumes_from:
       - php
     ports:
       - 80:80
-    environment:
-        VIRTUAL_HOST: 'yoursite.com'
 
   mysql:
     container_name: mysql
@@ -42,4 +40,3 @@ services :
         PMA_HOST : mysql
     ports:
       - "8000:80"
-
