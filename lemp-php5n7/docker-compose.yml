@@ -1,0 +1,54 @@
+version : '2'
+services :
+  php53:
+    container_name: php53-fpm
+    build: ./php 
+    working_dir: "/var/www"
+    volumes:
+        - ./www:/var/www
+        - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
+        - ./php/pool.conf:/usr/local/etc/php/pool.conf:ro
+    expose:
+      - "9000"
+
+  php71:
+    container_name: php71-fpm
+    build: ./php 
+    working_dir: "/var/www"
+    volumes:
+        - ./www:/var/www
+        - ./php7/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
+        - ./php7/pool.conf:/usr/local/etc/php/pool.conf:ro
+        - ./php7/etc:/usr/local/etc
+    expose:
+      - "9001"
+
+  nginx:
+    container_name: nginx
+    image: nginx:stable-alpine
+    restart: always
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+      - ./www:/var/www
+    ports:
+      - 80:80
+
+  mysql:
+    container_name: mysql
+    image: mysql:5.6
+    environment:
+        MYSQL_ROOT_PASSWORD: rootdocker
+    ports:
+      - 3306:3306
+      
+  pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+        PMA_HOST : mysql
+    ports:
+      - "8000:80"
+
