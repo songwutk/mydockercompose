@@ -3,18 +3,16 @@ MAINTAINER Andrey Barashkov <sokolby@gmail.com>
 RUN apt-get update
 RUN apt-get install -y \
     libfreetype6-dev \
-#    php5-dev php5-memcached \
-#    memcached \
+    php5-gd \
     libjpeg62-turbo-dev \
-#    libpng12-dev \
     libmcrypt-dev \
+    libpng12-dev \
     libxslt-dev \
     libicu-dev \
     unzip \
     geoip-bin \
     geoip-database \
     libgeoip-dev \
-#    php5-geoip \
     nano \
     mysql-client \
     cron
@@ -28,10 +26,13 @@ RUN apt-get update \
   && apt-get clean \
   && rm -rf /tmp/pear
 
-RUN rm -rf /var/lib/apt/lists/*
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+RUN rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-install iconv mcrypt \
+    && mkdir /usr/include/freetype2/freetype \ 
+    && ln -s /usr/include/freetype2/freetype.h /usr/include/freetype2/freetype/freetype.h \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ 
+
 RUN docker-php-ext-install \
-    opcache \
     dba \
     gd \
     mcrypt \
@@ -45,9 +46,6 @@ RUN docker-php-ext-install \
     xsl \
     xmlrpc
 RUN usermod -u 1000 www-data
-#COPY ./conf/php.ini /usr/local/etc/php/php.ini
-#COPY ./conf/php.conf /usr/local/etc/php-fpm.d/php.conf
-#ADD crontab /var/spool/cron/crontabs/root
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php \
     && php -r "unlink('composer-setup.php');" \
