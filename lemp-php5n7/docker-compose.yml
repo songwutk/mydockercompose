@@ -1,8 +1,8 @@
 version : '2'
 services :
-  php53:
-    container_name: php53-fpm
-    build: ./php 
+  php54:
+    container_name: php54-fpm
+    build: ./php5 
     working_dir: "/var/www"
     volumes:
         - ./www:/var/www
@@ -13,7 +13,7 @@ services :
 
   php71:
     container_name: php71-fpm
-    build: ./php 
+    build: ./php7 
     working_dir: "/var/www"
     volumes:
         - ./www:/var/www
