@@ -1,27 +1,30 @@
 version : '2'
 services :
-  php54:
-    container_name: cbphp54-fpm
+
+# yourweb5.com
+  php53:
+    container_name: php53-fpm
     build: ./php5 
     working_dir: "/var/www"
     volumes:
-        - ./www5:/var/www
+        - ./www/www5:/var/www
         - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
         - ./php/pool.conf:/usr/local/etc/php/pool.conf:ro
     expose:
       - "9000"
 
+# yourweb.com
   php71:
-    container_name: cbphp71-fpm
+    container_name: php71-fpm
     build: ./php7 
-    working_dir: "/var/www/html"
+    restart: always
     volumes:
-        - ./www7:/var/www
+      - ./www/www7:/var/www
     expose:
       - "9000"
 
   nginx:
-    container_name: cbnginx
+    container_name: nginx
     image: nginx:stable-alpine
     restart: always
     volumes:
@@ -33,7 +36,7 @@ services :
       - 80:80
 
   mysql:
-    container_name: cbmysql
+    container_name: mysql
     image: mysql:5.6
     environment:
         MYSQL_ROOT_PASSWORD: rootdocker
@@ -42,7 +45,7 @@ services :
       
   pma:
     image: phpmyadmin/phpmyadmin
-    container_name: cbsqladmin
+    container_name: phpmyadmin
     restart: always
     environment:
         PMA_HOST : mysql

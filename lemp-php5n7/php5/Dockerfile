@@ -1,4 +1,5 @@
-FROM php:5.4-fpm
+FROM andthensome/docker-php-5.3-fpm
+
 
 MAINTAINER Torchbox Sysadmin <sysadmin@torchbox.com>
 
@@ -23,16 +24,17 @@ RUN apt-get update && apt-get install -y \
         libpspell-dev \
         libldap2-dev \
         unixodbc-dev \
-        libpq-dev
+        libpq-dev \
+        php5-gd
 
 # https://bugs.php.net/bug.php?id=49876
 RUN ln -fs /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/
 
 RUN echo "Installing PHP extensions" \
-    && docker-php-ext-install iconv mcrypt gd pdo_mysql pdo_pgsql pcntl zip bcmath simplexml xmlrpc soap pspell ldap mbstring \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-enable iconv mcrypt gd pdo_mysql pdo_pgsql pcntl zip bcmath simplexml xmlrpc soap pspell ldap mbstring \
-#    && git clone https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/memcached \
+    && docker-php-ext-install iconv mcrypt pdo_mysql pdo_pgsql pcntl zip bcmath simplexml xmlrpc soap pspell ldap mbstring \
+#    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-enable iconv mcrypt pdo_mysql pdo_pgsql pcntl zip bcmath simplexml xmlrpc soap pspell ldap mbstring \
+    && git clone https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/memcached \
 #    && cd /usr/src/php/ext/memcached \
 #    && docker-php-ext-configure memcached \
 #    && docker-php-ext-install memcached \
