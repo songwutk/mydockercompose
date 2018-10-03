@@ -6,8 +6,6 @@ services :
     working_dir: "/var/www"
     volumes:
         - ./www/:/var/www
-        - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
-        - ./php/pool.conf:/usr/local/etc/php/pool.conf:ro
     expose:
       - "9000"
 
@@ -16,7 +14,6 @@ services :
     image: nginx:stable-alpine
     restart: always
     volumes:
-      - ./nginx/conf:/etc/nginx/conf
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./logs/nginx:/var/log/nginx
     volumes_from:

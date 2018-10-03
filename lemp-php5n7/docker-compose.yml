@@ -3,7 +3,7 @@ services :
 
 # yourweb5.com
   php53:
-    container_name: php53-fpm
+    container_name: 4php53-fpm
     build: ./php5 
     working_dir: "/var/www"
     volumes:
@@ -15,7 +15,7 @@ services :
 
 # yourweb.com
   php71:
-    container_name: php71-fpm
+    container_name: 4php71-fpm
     build: ./php7 
     restart: always
     volumes:
@@ -24,7 +24,7 @@ services :
       - "9000"
 
   nginx:
-    container_name: nginx
+    container_name: 4nginx
     image: nginx:stable-alpine
     restart: always
     volumes:
@@ -36,7 +36,7 @@ services :
       - 80:80
 
   mysql:
-    container_name: mysql
+    container_name: 4mysql
     image: mysql:5.6
     environment:
         MYSQL_ROOT_PASSWORD: rootdocker
@@ -45,7 +45,7 @@ services :
       
   pma:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
+    container_name: 4myadmin
     restart: always
     environment:
         PMA_HOST : mysql

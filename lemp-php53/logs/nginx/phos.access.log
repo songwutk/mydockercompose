@@ -1,0 +1,6 @@
+192.168.56.111 - - [03/Oct/2018:20:03:01 +0000] "GET /robots.txt HTTP/1.1" 200 70404 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0"
+192.168.56.111 - - [03/Oct/2018:20:03:01 +0000] "GET / HTTP/1.1" 200 70440 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0"
+192.168.56.111 - - [03/Oct/2018:20:03:01 +0000] "GET /index.php?=PHPE9568F34-D428-11d2-A769-00AA001ACF42 HTTP/1.1" 200 2536 "http://192.168.56.1/" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0"
+192.168.56.111 - - [03/Oct/2018:20:03:01 +0000] "GET /index.php?=PHPE9568F35-D428-11d2-A769-00AA001ACF42 HTTP/1.1" 200 2158 "http://192.168.56.1/" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0"
+192.168.56.111 - - [03/Oct/2018:20:03:01 +0000] "GET /favicon.ico HTTP/1.1" 200 65490 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0"
+192.168.56.111 - - [03/Oct/2018:20:03:01 +0000] "GET /favicon.ico HTTP/1.1" 200 70285 "-" "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0"
